@@ -1,0 +1,47 @@
+{% extends 'app_loyalty/base.html' %}
+{% load static %}
+
+{% block title %}
+  {{title}} | 
+{% endblock %}
+
+{% block content %}
+<section class="news">
+  <div class="news__container container flex">
+    <div class="news__left">
+      <h2 class="title news__title">О проекте</h2>
+      <p class="news__descr">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorem laborum repellat beatae, consequatur est ut quas pariatur debitis, cum magni repellendus quis amet consectetur adipisci accusamus corrupti alias nobis. Aliquam!</p>
+    </div>
+    <div class="news__right">
+      <h2 class="title news__title">Последние новости</h2>
+      {% if news_list %}
+      {% for news in news_list %}
+      <div class="news__item">
+        <p class="news__item-date">{{ news.created_up }}</p>
+        {% if news.img %}
+        <img src="{{ news.img.url }}" alt="" class="news__item-img">
+        {% endif %}
+        <h3 class="news__item-title">{{ news.title }}</h3>
+        <p class="news__item-descr">{{ news.short_descr }}</p>
+        <a href="{{ news.get_absolute_url }}" class="news__item-link">Подробнее --></a>
+      </div>
+      {% endfor %}
+      {% endif %}
+
+      <nav class="paginator__nav">
+        <ul class="list-reset flex paginator__list">
+          {% for page in page_obj.paginator.page_range %}
+          {% if page_obj.number == page %}
+          <li class="paginatir__item paginatir__item-selected">{{ page }}</li>
+          {% else %}
+          <li class="paginatir__item">
+            <a href="?page={{ page }}">{{ page }}</a>
+          </li>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</section>
+{% endblock %}

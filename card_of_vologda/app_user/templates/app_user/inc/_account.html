@@ -1,0 +1,6 @@
+{% load app_user_tags %}
+
+<p class="profile__name">{{ profile }}</p>
+<p class="profile__status"><span>Статус: </span>{{ profile.groups.all.0 }}</p>
+<p class="profile__card"><span>Карта: </span>{% get_normalize_card profile.num_card %}</p>
+<p class="profile__balance"><span>Ваш баланс: </span>{{ profile.balance }} бонусов</p>

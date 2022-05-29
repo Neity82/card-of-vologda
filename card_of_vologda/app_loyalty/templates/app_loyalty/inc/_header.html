@@ -1,0 +1,33 @@
+{% load static %}
+
+<header class="header">
+  <div class="container header__container flex">
+    <a href="" class="header__logo">
+      <img src="{% static 'app_loyalty/images/logo.png' %}" alt="" class="header__img">
+    </a>
+    <nav class="header__nav nav">
+      <ul class="nav__list list-reset flex">
+        <li class="nav__item"><a href="{% url 'home' %}" class="nav__link">Главная</a></li>
+        <li class="nav__item"><a href="{% url 'news' %}" class="nav__link">Новости</a></li>
+        <li class="nav__item"><a href="{% url 'discount' %}" class="nav__link">Партнеры</a></li>
+        <li class="nav__item"><a href="{% url 'about' %}" class="nav__link">О проекте</a></li>
+        {% if user.is_authenticated %}
+        {% if user.is_organization %}
+        <li class="nav__item"><a href="{% url 'organization_account' user.pk %}" class="nav__link">Личный кабинет</a></li>
+        {% else %}
+        <li class="nav__item"><a href="{% url 'citizen_account' user.pk %}" class="nav__link">Личный кабинет</a></li>
+        {% endif %}
+        {% endif %}
+      </ul>
+    </nav>
+    <div class="header__wrapper flex">
+      {% if request.user.is_authenticated %}
+      <p>{{ user }}</p>
+      <a href="{% url 'logout' %}" class="header__link">Выход</a>
+      {% else %}
+      <a href="{% url 'login' %}" class="header__link">Войти</a>
+      <a href="{% url 'register' %}" class="header__link">Регистрация</a>
+      {% endif %}
+    </div>
+  </div>
+</header>

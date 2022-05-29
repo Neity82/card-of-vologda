@@ -1,0 +1,39 @@
+{% extends 'app_loyalty/base.html' %}
+{% load static %}
+{% load app_loyalty_tags %}
+
+{% block title %}
+  {{title}} | 
+{% endblock %}
+
+{% block content %}
+<section class="discount">
+  <div class="discount__container container flex">
+    <div class="discount__left">
+      <ul class="list-reset">
+        {% if cat_selected == 0 %}
+            <li class="category__item"><a href="" class="selected">Все категории</a></li>
+        {% else %}
+            <li class="category__item"><a class="categori__link" href="{% url 'discount' %}">Все категории</a></li>
+        {% endif %}
+        
+        {% show_categories cat_selected=cat_selected %}
+      </ul>
+    </div>
+    <div class="discount__right">
+      <h2 class="title discount__title">Партнеры</h2>
+      {% if discount_list %}
+      <ul class="list-reset discount__list flex">
+      {% for item in discount_list %}
+      <li class="discount__item">
+        <p class="discount__category">Категория: {{ item.organization.category }}</p>
+        <p class="discount__organization">{{ item.organization }}</p>
+        <p class="discount__descr">{{ item.description }}</p>
+      </li>
+      {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

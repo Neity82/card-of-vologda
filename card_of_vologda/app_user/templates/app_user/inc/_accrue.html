@@ -1,0 +1,21 @@
+<div  class="form">
+  <form  method="post">
+  {% csrf_token %}
+    
+    <p><label for="{{ form.num_card.id_for_label }}">{{ form.num_card.label }}</label>{{ form.num_card }}</p>
+    <div class="">{{ form.num_card.errors }}</div>
+    <p><label for="{{ form.balance.id_for_label }}">{{ form.balance.label }}</label>{{ form.balance }}</p>
+    <div class="">{{ form.balance.errors }}</div>
+    
+    <button  type="submit" id="" class="btn">Начислить</button>
+    {% if messages %}
+    <ul class="messages list-reset">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">
+                {{ message|safe }}
+            </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+  </form>
+</div>

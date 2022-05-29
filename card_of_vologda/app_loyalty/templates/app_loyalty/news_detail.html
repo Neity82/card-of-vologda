@@ -1,0 +1,28 @@
+{% extends 'app_loyalty/base.html' %}
+{% load static %}
+
+{% block title %}
+  {{title}} | 
+{% endblock %}
+
+{% block content %}
+<section class="news-detail">
+  <div class="news-detail__container container flex">
+    <div class="news-detail__left">
+      <h2 class="title news-detail__title">О проекте</h2>
+      <p class="news-detail__descr">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorem laborum repellat beatae, consequatur est ut quas pariatur debitis, cum magni repellendus quis amet consectetur adipisci accusamus corrupti alias nobis. Aliquam!</p>
+    </div>
+    <div class="news-detail__right">
+      {% if news %}
+      <h2 class="title news-detail__title">{{ news.title }}</h2>
+      <p class="news-detail__date">{{ news.created_up }}</p>
+      {% if news.img %}
+      <img src="{{ news.img.url }}" alt="" class="news-detail__img">
+      {% endif %}
+      <p class="news-detail__short-descr"><b>{{ news.short_descr }}</b></p>
+      <p class="news-detail__descr">{{ news.description|linebreaksbr }}</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

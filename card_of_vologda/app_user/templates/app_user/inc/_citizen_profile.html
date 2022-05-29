@@ -1,0 +1,28 @@
+<div class="profile__left">
+  <ul class="profile__nav list-reset">
+    {% if title == 'Личный кабинет' %}
+      <li class="profile__nav-item"><a class="selected" href="">Личный кабинет </a></li>
+    {% else %}
+      <li class="profile__nav-item"><a class="profile__nav-link" href="{% url 'citizen_account' user.pk %}">Личный кабинет</a></li>
+    {% endif %}
+    {% if title == 'Профиль' %}
+      <li class="profile__nav-item"><a class="selected" href="">Профиль</a></li>
+    {% else %}
+      <li class="profile__nav-item"><a class="profile__nav-link" href="{% url 'profile' user.pk %}">Профиль</a></li>
+    {% endif %}
+    {% if title == 'История' %}
+      <li class="profile__nav-item"><a class="selected" href="">История</a></li>
+    {% else %}
+      <li class="profile__nav-item"><a class="profile__nav-link" href="{% url 'history' user.pk %}">История</a></li>
+    {% endif %}          
+  </ul>
+</div>
+<div class="profile__right">
+  {% if title == 'Личный кабинет' %}
+    {% include 'app_user/inc/_account.html' %}
+  {% elif title == 'Профиль' %}
+    {% include 'app_user/inc/_profile.html' %}
+  {% elif title == 'История' %}
+    {% include 'app_user/inc/_history.html' %}
+  {% endif %}
+</div>

@@ -1,0 +1,11 @@
+<form action="" method="post">
+  {% csrf_token %}
+  <div class="form">
+    {% for p in form %}
+    <p><label for="{{ p.id_for_label }}">{{ p.label }}</label>{{ p }}</p>
+    <div class="form-error">{{ p.errors }}</div>
+    {% endfor %}
+  </div>
+  <button class="btn profile__btn" type="submit">Сохранить</button>
+</form>
+<a class="profile__link" href="{% url 'password_change' %}">Изменить пароль --->>></a>

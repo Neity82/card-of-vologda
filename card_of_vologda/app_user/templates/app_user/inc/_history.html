@@ -1,0 +1,23 @@
+<table border="1" cellspacing="0" cellpadding="3" class="table table-striped history__table">
+  <thead>
+    <tr>
+      <th>Дата</th>
+      <th>Тип операции</th>
+      <th>Количество бонусов</th>
+      <th>Организация</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% if history_list %}
+    {% for item in history_list %}
+    <tr>
+      <td>{{ item.created_up }}</td>
+      <td>{{ item.type }}</td>
+      <td>{{ item.sum_points }}</td>
+      <td>{{ item.organization }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+    <tr></tr>
+  </tbody>
+</table>

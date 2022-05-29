@@ -1,0 +1,24 @@
+{% extends 'app_loyalty/base.html' %}
+{% load static %}
+
+{% block title %}
+  {{title}} | 
+{% endblock %}
+
+{% block content %}
+<section class="register">
+  <div class="register__container container">
+    <h1 class="title register__title">Регистрация</h1>
+    <form action="" method="post">
+      {% csrf_token %}
+      <div class="form">
+        {% for p in form %}
+        <p><label for="{{ p.id_for_label }}">{{ p.label }}</label>{{ p }}</p>
+        <div class="form-error">{{ p.errors }}</div>
+        {% endfor %}
+      </div>
+      <button class="btn register__btn" type="submit">Регистрация</button>
+    </form>
+  </div>
+</section>
+{% endblock %}

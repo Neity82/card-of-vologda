@@ -1,0 +1,26 @@
+{% extends 'app_loyalty/base.html' %}
+{% load static %}
+
+{% block title %}
+  {{title}} | 
+{% endblock %}
+
+{% block content %}
+<section class="profile">
+  <div class="profile__container container">
+    <h2 class="title profile__title">
+      {{ title }}
+      {% if user.is_organization and title == 'Личный кабинет' %}
+       организации
+      {% endif %}
+    </h2>
+    <div class="flex">
+      {% if user.is_organization %}
+        {% include 'app_user/inc/_organization_profile.html' %}
+      {% else %}
+        {% include 'app_user/inc/_citizen_profile.html' %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

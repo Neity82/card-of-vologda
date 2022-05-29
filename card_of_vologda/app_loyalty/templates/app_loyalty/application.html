@@ -1,0 +1,33 @@
+{% extends 'app_loyalty/base.html' %}
+{% load static %}
+
+{% block title %}
+  {{title}} | 
+{% endblock %}
+
+{% block content %}
+<section class="application">
+  <div class="container application__container">
+    <h2 class="title application__title">Заявка на учачтие в программе</h2>
+    <div  class="form">
+      <form  method="post">
+      {% csrf_token %}
+        {% for p in form %}
+        <p><label for="{{ p.id_for_label }}">{{ p.label }}</label>{{ p }}</p>
+        <div class="">{{ p.errors }}</div>
+        {% endfor %}
+        <button  type="submit" id="" class="btn">Отправить</button>
+        {% if messages %}
+        <ul class="messages list-reset">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">
+                    {{ message|safe }}
+                </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'app_loyalty/base.html' %}
+{% load static %}
+
+{% block title %}
+  {{title}}
+{% endblock %}
+
+{% block content %}
+<section class="home">
+  <div class="home__container container flex">
+    <div class="home__left">
+      <h2 class="title home__title">О проекте</h2>
+      <p class="home__descr">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorem laborum repellat beatae, consequatur est ut quas pariatur debitis, cum magni repellendus quis amet consectetur adipisci accusamus corrupti alias nobis. Aliquam!</p>
+      <a href="{% url 'application' %}" class="home__link">Стать партнером --->>></a>
+    </div>
+    <div class="home__right">
+      <div class="home__banner">
+        <p>Здесь можно сделать баннер, слайдер или что-то еще.</p>
+      </div>
+      <h2 class="title home__title">Последние новости</h2>
+      {% if news_list %}
+      {% for news in news_list %}
+      <div class="home__news">
+        <p class="home__news-date">{{ news.created_up }}</p>
+        {% if news.img %}
+        <img src="{{ news.img.url }}" alt="" class="home__news-img">
+        {% endif %}
+        <h3 class="home__news-title">{{ news.title }}</h3>
+        <p class="home__news-descr">{{ news.short_descr }}</p>
+        <a href="{{ news.get_absolute_url }}" class="home__news-link">Подробнее --></a>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

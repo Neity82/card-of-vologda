@@ -1,0 +1,39 @@
+<div class="profile__left">
+  <ul class="profile__nav list-reset">
+    {% if title == 'Личный кабинет' %}
+      <li class="profile__nav-item"><a class="selected" href="">Личный кабинет</a></li>
+    {% else %}
+      <li class="profile__nav-item"><a class="profile__nav-link" href="{% url 'organization_account' user.pk %}">Личный кабинет</a></li>
+    {% endif %}
+    {% if title == 'Проверить' %}
+      <li class="profile__nav-item"><a class="selected" href="">Проверить</a></li>
+    {% else %}
+      <li class="profile__nav-item"><a class="profile__nav-link" href="{% url 'verify' user.pk %}">Проверить</a></li>
+    {% endif %}
+    {% if user.can_accrue == True %}
+    {% if title == 'Начислить' %}
+      <li class="profile__nav-item"><a class="selected" href="">Начислить</a></li>
+    {% else %}
+      <li class="profile__nav-item"><a class="profile__nav-link" href="{% url 'accrue' user.pk %}">Начислить</a></li>
+    {% endif %}
+    {% endif %}
+    {% if user.can_deduct == True %}
+    {% if title == 'Списать' %}
+      <li class="profile__nav-item"><a class="selected" href="">Списать</a></li>
+    {% else %}
+      <li class="profile__nav-item"><a class="profile__nav-link" href="{% url 'deduct' user.pk %}">Списать</a></li>
+    {% endif %}
+    {% endif %}    
+  </ul>
+</div>
+<div class="profile__right">
+  {% if title == 'Личный кабинет' %}
+    {% include 'app_user/inc/_organization_account.html' %}
+  {% elif title == 'Проверить' %}
+    {% include 'app_user/inc/_verify.html' %}
+  {% elif title == 'Начислить' and user.can_accrue == True %}
+    {% include 'app_user/inc/_accrue.html' %}
+  {% elif title == 'Списать' and user.can_deduct == True %}
+    {% include 'app_user/inc/_deduct.html' %}
+  {% endif %}
+</div>
